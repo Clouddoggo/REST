@@ -1,14 +1,17 @@
 // Initialize express router
 let router = require('express').Router();
+
 // Set default API response
 router.get('/', function (req, res) {
     res.json({
-        status: 'API Its Working',
-        message: 'Welcome to RESTHub crafted with love!',
+        status: 'API is working',
+        message: 'Welcome to RESTful API CS3219 Task B!',
     });
 });
+
 // Import contact controller
-var contactController = require('./contactController');
+var contactController = require('./controllers/contactController');
+
 // Contact routes
 router.route('/contacts')
     .get(contactController.index)
@@ -18,5 +21,6 @@ router.route('/contacts/:contact_id')
     .patch(contactController.update)
     .put(contactController.update)
     .delete(contactController.delete);
+
 // Export API routes
 module.exports = router;
