@@ -2,7 +2,7 @@ let express = require('express');
 let bodyParser = require('body-parser');
 let mongoose = require('mongoose');
 let app = express();
-let apiRoutes = require("./api-routes");
+let apiRoutes = require("./src/api-routes");
 
 // Configure bodyparser to handle post requests
 app.use(bodyParser.urlencoded({
@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 // Connect to Mongoose and set connection variable
-mongoose.connect('mongodb://localhost/resthub', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost/resthub', { useNewUrlParser: true, useUnifiedTopology: true });
 var db = mongoose.connection;
 
 // Added check for DB connection
