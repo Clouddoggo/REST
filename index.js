@@ -24,11 +24,8 @@ else
 // Setup server port
 var port = process.env.PORT || 8080;
 
-// Send message for default URL
-app.get('/', (req, res) => res.send('RESTful API created for CS3219 Task B (:'));
-
 // Use Api routes in the App
-app.use('/api', apiRoutes);
+app.use('/', apiRoutes);
 
 // Launch app to listen to specified port
 app.listen(port, function () {

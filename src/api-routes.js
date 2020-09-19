@@ -1,16 +1,13 @@
 // Initialize express router
 let router = require('express').Router();
 
-// Set default API response
+// Set default response
 router.get('/', function (req, res) {
-    res.json({
-        status: 'API is working',
-        message: 'Welcome to RESTful API CS3219 Task B!',
-    });
+    res.send('Welcome to RESTful API for CS3219 Task B!');
 });
 
 // Import contact controller
-var contactController = require('./controllers/contactController');
+let contactController = require('./controllers/contactController');
 
 // Contact routes
 router.route('/contacts')

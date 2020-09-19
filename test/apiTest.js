@@ -6,6 +6,8 @@ const Contact = require('../src/model/contactModel');
 chai.use(chaiHttp);
 chai.should();
 
+// TODO: fix travis
+
 describe("GET /contacts", () => {
     it("should get all contacts", (done) => {
         chai.request(app)
