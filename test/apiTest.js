@@ -19,7 +19,7 @@ describe("GET /contacts", () => {
                 res.body.should.have.property('data');
                 done();
             });
-    });
+    }).timeout(10000);
 });
 
 describe("POST /contacts", () => {
@@ -41,7 +41,7 @@ describe("POST /contacts", () => {
                 res.body.should.be.a('object');
                 done();
             });
-    });
+    }).timeout(10000);
 });
 
 describe("DEL /contacts/:contact_id", () => {
@@ -58,7 +58,7 @@ describe("DEL /contacts/:contact_id", () => {
                 res.body.should.be.a('object');
                 done();
             });
-    });
+    }).timeout(10000);
 });
 
 describe("GET /contacts/:contact_id", () => {
@@ -75,7 +75,7 @@ describe("GET /contacts/:contact_id", () => {
                 res.body.should.be.a('object');
                 res.body.should.have.property('data');
                 done();
-            });
+            }).timeout(10000);
     });
 });
 
@@ -95,7 +95,7 @@ describe("UPDATE /contact/:contact_id with PATCH or PUT", () => {
                     res.body.should.be.a('object');
                     done();
                 });
-        });
+        }).timeout(10000);
 
         it("should update the contact's email", (done) => {
             chai.request(app)
@@ -107,7 +107,7 @@ describe("UPDATE /contact/:contact_id with PATCH or PUT", () => {
                     res.body.should.be.a('object');
                     done();
                 });
-        });
+        }).timeout(10000);
     });
 
     describe("PUT /contacts/:contact_id", () => {
@@ -125,7 +125,7 @@ describe("UPDATE /contact/:contact_id with PATCH or PUT", () => {
                     res.body.should.be.a('object');
                     done();
                 });
-        });
+        }).timeout(10000);
 
         it("should update the contact's phone", (done) => {
             chai.request(app)
@@ -137,7 +137,7 @@ describe("UPDATE /contact/:contact_id with PATCH or PUT", () => {
                     res.body.should.be.a('object');
                     done();
                 });
-        });
+        }).timeout(10000);
     });
 });
 
