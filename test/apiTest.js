@@ -75,8 +75,8 @@ describe("GET /contacts/:contact_id", () => {
                 res.body.should.be.a('object');
                 res.body.should.have.property('data');
                 done();
-            }).timeout(10000);
-    });
+            });
+    }).timeout(10000);
 });
 
 describe("UPDATE /contact/:contact_id with PATCH or PUT", () => {
