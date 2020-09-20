@@ -3,6 +3,10 @@ node_js:
   - "stable"
 services:
   - mongodb
+deploy:
+  provider: firebase
+  token:
+    secure: "Hi3+U2Dr7ASUIfTrCyn0wUqegxy0vIdUCTZ0gYDqEPK0v/G581fraQS3GPJ3u4DhfC9mi1E0/g7mQ+p6kCNnu++qhJhRZkFRKGn1BOWEWh4giYPNc5TUTvmB8mgc7v1vbsUqfEcqDA9VouYeIWhoXflKonIjERwOHeKbniQFxcOzKhx/pXR7UA0TVAIKoJmKe1uinjdJ+GcCiJfmGt2o9y3gRhP1RpKYWpOYZ+WefGmu5DOLHcbPIte95EcyCy3+vJxiMo9HgdhCKXwRXRN2Jwln7LOSH0YWR0a0PkLgSqY9ybqRn80EcSIEeab8y2H4QoMiYCF5an5HMXVET290tw4TIs0okkFKKEcOpD9U7aGusqZP81oQDEXApnzAnuFGvQ3cC6l9ag9dTDGVTds7p4saV3xEiMwdjzjH3rMtAl2FeF2nodXA9/X8E6t7d8SfA8ybbLXawzvwKRO5l/aPyFulhXsuRzR9/Ihc35W8epXmJeuSbDzZx6CvW116CFhAZ81TOxY1rR1nPw8I2pGyjQsG3Ii+R1WP9HxRJfHn6vfAYnMGG78ddmYW0nxWh8E7lawEWEjZLK94s3LviPO4ZqWgI4gSwuhfvYJPOBsDPDl+BV8qXNUaqfubXtKWyd2uETUtSUhzPLkOBGzkR/m7tGWpZiW3WbXI+sTp6W0ccwI="
 cache:
   directories:
     - "node_modules"
