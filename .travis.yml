@@ -3,6 +3,10 @@ node_js:
   - "stable"
 services:
   - mongodb
+deploy:
+  provider: gae
+  keyfile: "otot-task-b-290214-11a462371441.json"
+  project: "otot-task-b-290214"
 cache:
   directories:
     - "node_modules"
