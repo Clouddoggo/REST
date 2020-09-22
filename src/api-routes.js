@@ -11,13 +11,13 @@ let contactController = require('./controllers/contactController');
 
 // Contact routes
 router.route('/contacts')
-    .get(contactController.index)
-    .post(contactController.new);
+    .get(contactController.getContacts)
+    .post(contactController.createContact);
 router.route('/contacts/:contact_id')
-    .get(contactController.view)
-    .patch(contactController.update)
-    .put(contactController.update)
-    .delete(contactController.delete);
+    .get(contactController.viewContact)
+    .patch(contactController.updateContact)
+    .put(contactController.updateContact)
+    .delete(contactController.deleteContact);
 
 // Export API routes
 module.exports = router;
