@@ -23,7 +23,7 @@ describe("GET /contacts", () => {
 });
 
 describe("POST /contacts", () => {
-    const newContact = new Contact({ name: 'Alice', email: 'al1c3@hotmail.com', phone: '01028475621221' });
+    const newContact = new Contact({ name: 'Alice', phone: '01028475621221' });
     after((done) => {
         // TODO: Fix the deletion of added contacts
         newContact.delete((err) => {
@@ -45,7 +45,7 @@ describe("POST /contacts", () => {
 });
 
 describe("DEL /contacts/:contact_id", () => {
-    const newContact = new Contact({ name: 'Bob', email: 'bobby11@email.com', phone: '91234567' });
+    const newContact = new Contact({ name: 'Bob', phone: '91234567' });
     let id = addDummyContact(newContact);
     deleteDummyContact(newContact);
 
@@ -62,7 +62,7 @@ describe("DEL /contacts/:contact_id", () => {
 });
 
 describe("GET /contacts/:contact_id", () => {
-    const newContact = new Contact({ name: 'Charlie', email: 'charlie@example.com', phone: '87654321' });
+    const newContact = new Contact({ name: 'Charlie', phone: '87654321' });
     let id = addDummyContact(newContact);
     deleteDummyContact(newContact);
 
@@ -81,7 +81,7 @@ describe("GET /contacts/:contact_id", () => {
 
 describe("UPDATE /contact/:contact_id with PATCH or PUT", () => {
     describe("PATCH /contacts/:contact_id", () => {
-        const newContact = new Contact({ name: 'Derrick', email: 'd3rr1c2@example.email.com', phone: '455778796' });
+        const newContact = new Contact({ name: 'Derrick', phone: '455778796' });
         let id = addDummyContact(newContact);
         deleteDummyContact(newContact);
 
@@ -97,10 +97,10 @@ describe("UPDATE /contact/:contact_id with PATCH or PUT", () => {
                 });
         }).timeout(10000);
 
-        it("should update the contact's email", (done) => {
+        it("should update the contact's phone", (done) => {
             chai.request(app)
                 .patch(`/contacts/${id}`)
-                .send({ email: 'Elineyparky@gmail.com' })
+                .send({ phone: '52134567' })
                 .end((err, res) => {
                     res.should.have.status(200);
                     res.should.be.json;
@@ -111,7 +111,7 @@ describe("UPDATE /contact/:contact_id with PATCH or PUT", () => {
     });
 
     describe("PUT /contacts/:contact_id", () => {
-        const newContact = new Contact({ name: 'Felix', email: 'kjellberg@example.email.com', phone: '435257667' });
+        const newContact = new Contact({ name: 'Felix', phone: '435257667' });
         let id = addDummyContact(newContact);
         deleteDummyContact(newContact);
 

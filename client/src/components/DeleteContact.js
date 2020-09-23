@@ -1,0 +1,48 @@
+import React, { Component } from 'react';
+import { Card, Col, Row, Button } from 'react-bootstrap';
+
+class DeleteContact extends Component {
+    constructor(props) {
+        super();
+        this.state = {
+            contacts: []
+        }
+    }
+
+    deleteContact = (e, id) => {
+        const url = `/contacts/${id}`;
+        fetch(url, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+            .then(response => {
+                if (response.ok) {
+                    // getContacts();
+                    return response.json();
+                }
+                throw new Error(`Network response error: ${response.id}, ${response.message}`);
+            })
+            .catch(error => console.log(error.message));
+    }
+
+    render() {
+        return (
+            <div>
+                {
+                    this.state.contacts.map((contact, _) => {
+                        return <Card>
+                            contact
+                            <Button className="btn btn-danger" onClick={(e) => this.deleteContact(e, contact.id)}>
+                                Delete
+            </Button>
+                        </Card>
+                    })
+                }
+            </div>
+        );
+    }
+}
+
+export default DeleteContact;

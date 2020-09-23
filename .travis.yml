@@ -1,8 +1,8 @@
 language: node_js
 node_js:
-- stable
+  - stable
 services:
-- mongodb
+  - mongodb
 deploy:
   provider: gae
   keyfile: otot-task-b-290214-11a462371441.json
