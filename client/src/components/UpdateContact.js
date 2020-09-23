@@ -45,15 +45,15 @@ class UpdateContact extends Component {
                 <Card.Body>
                     <Card.Title>Update contact</Card.Title>
                     <Form className="form-inline">
-                        <div class="input-group mb-2 mr-sm-2">
+                        <div className="input-group mb-2 mr-sm-2">
                             <input type="text" className="form-control" placeholder="Id" />
                         </div>
-                        <label class="sr-only">Name</label>
+                        <label className="sr-only">Name</label>
                         <input type="text" className="form-control mb-2 mr-sm-2" placeholder="Name" />
-                        <label class="sr-only">number</label>
-                        <div class="input-group mb-2 mr-sm-2">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">#</div>
+                        <label className="sr-only">number</label>
+                        <div className="input-group mb-2 mr-sm-2">
+                            <div className="input-group-prepend">
+                                <div className="input-group-text">#</div>
                             </div>
                             <input type="text" className="form-control" placeholder="Phone number" />
                         </div>

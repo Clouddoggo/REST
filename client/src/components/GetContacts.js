@@ -6,7 +6,8 @@ class GetContact extends Component {
         super();
         this.state = {
             contacts: [],
-            id: ''
+            id: '',
+            contact: null
         }
     }
 
@@ -24,6 +25,7 @@ class GetContact extends Component {
                 }
                 throw new Error(`Network response error: ${response.id}, ${response.message}`);
             })
+            .then(response => this.setState({ contact: response }))
             .catch(error => console.log(error.message));
     }
 
@@ -41,6 +43,7 @@ class GetContact extends Component {
                 }
                 throw new Error(`Network response error: ${response.id}, ${response.message}`);
             })
+            .then(response => this.setState({ contacts: response }))
             .catch(error => console.log(error.message));
     }
 
@@ -50,14 +53,23 @@ class GetContact extends Component {
                 <Card.Body>
                     <Card.Title>Get contact(s)</Card.Title>
                     <Form className="form-inline">
-                        <label class="sr-only">Id</label>
+                        <label className="sr-only">Id</label>
                         <input type="text" className="form-control mb-2 mr-sm-2" placeholder="Id" />
                         <Button className="btn btn-info" onClick={this.getContacts}>Get by Id</Button>
                         <span className="mr-5 ml-5">OR</span>
                         <Button className="btn btn-info float-left m-2" onClick={this.getContactById}>Get all</Button>
                     </Form>
+                    <ul>
+                        {
+                            this.state.contacts.map((contact, _) => {
+                                return <li>
+                                    contact
+                                </li>
+                            })
+                        }
+                    </ul>
                 </Card.Body>
-            </Card >
+            </Card>
         );
     }
 }

@@ -29,7 +29,7 @@ class DeleteContact extends Component {
 
     render() {
         return (
-            <Container className="shadow p-5">
+            <Container className="shadow p-4 m-5">
                 <ul>
                     {
                         this.state.contacts.map((contact, _) => {
