@@ -41,25 +41,24 @@ class AddContact extends Component {
 
     render() {
         return (
-            <div className="align-item-center">
-                <Card className="contact-card">
-                    <Form>
-                        <div className="form-group row">
-                            <label className="col-sm-2 col-form-label">Name of contact:</label>
-                            <div className="col-sm-10">
-                                <input type="string" className="form-control" placeholder="John Doe" />
+            <Card className="container shadow p-4 m-5">
+                <Card.Body>
+                    <Card.Title>Create contact</Card.Title>
+                    <Form className="form-inline">
+                        <label class="sr-only">Name</label>
+                        <input type="text" className="form-control mb-2 mr-sm-2" placeholder="Name" />
+
+                        <label class="sr-only">number</label>
+                        <div class="input-group mb-2 mr-sm-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">#</div>
                             </div>
-                        </div>
-                        <div className="form-group row">
-                            <label className="col-sm-2 col-form-label">Phone number:</label>
-                            <div className="col-sm-10">
-                                <input type="string" className="form-control" placeholder="91234567" />
-                            </div>
+                            <input type="text" className="form-control" placeholder="Phone number" />
                         </div>
                         <Button type="submit" className="btn btn-primary">Submit</Button>
                     </Form>
-                </Card>
-            </div>
+                </Card.Body>
+            </Card>
         );
     }
 }

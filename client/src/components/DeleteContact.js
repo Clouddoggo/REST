@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Col, Row, Button } from 'react-bootstrap';
+import { Container, Button } from 'react-bootstrap';
 
 class DeleteContact extends Component {
     constructor(props) {
@@ -29,18 +29,21 @@ class DeleteContact extends Component {
 
     render() {
         return (
-            <div>
-                {
-                    this.state.contacts.map((contact, _) => {
-                        return <Card>
-                            contact
+            <Container className="shadow p-5">
+                <ul>
+                    {
+                        this.state.contacts.map((contact, _) => {
+                            return <li>
+                                contact
                             <Button className="btn btn-danger" onClick={(e) => this.deleteContact(e, contact.id)}>
-                                Delete
+                                    Delete
             </Button>
-                        </Card>
-                    })
-                }
-            </div>
+                            </li>
+                        })
+                    }
+                </ul>
+
+            </Container>
         );
     }
 }

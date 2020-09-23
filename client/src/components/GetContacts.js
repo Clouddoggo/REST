@@ -46,20 +46,18 @@ class GetContact extends Component {
 
     render() {
         return (
-            <div>
-                <Card className="contact-card">
-                    <Form>
-                        <Button className="btn btn-info" onClick={this.getContactById}>Get all</Button>
-                        <div className="form-group row">
-                            <label className="col-sm-2 col-form-label">Id:</label>
-                            <div className="col-sm-10">
-                                <input type="string" className="form-control" />
-                            </div>
-                        </div>
+            <Card className="container shadow p-4 m-5">
+                <Card.Body>
+                    <Card.Title>Get contact(s)</Card.Title>
+                    <Form className="form-inline">
+                        <label class="sr-only">Id</label>
+                        <input type="text" className="form-control mb-2 mr-sm-2" placeholder="Id" />
                         <Button className="btn btn-info" onClick={this.getContacts}>Get by Id</Button>
+                        <span className="mr-5 ml-5">OR</span>
+                        <Button className="btn btn-info float-left m-2" onClick={this.getContactById}>Get all</Button>
                     </Form>
-                </Card>
-            </div>
+                </Card.Body>
+            </Card >
         );
     }
 }
