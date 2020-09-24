@@ -11,7 +11,7 @@ exports.getBooks = function (req, res) {
         }
         res.status(200).json({
             status: "success",
-            message: books.length === 0 ? "No saved" : "Books retrieved successfully",
+            message: books.length === 0 ? "No books saved" : "Books retrieved successfully",
             data: books
         });
     });
@@ -20,7 +20,7 @@ exports.getBooks = function (req, res) {
 // Handle create book actions
 exports.createBook = function (req, res) {
     var book = new Book();
-    book.name = req.body.name ? req.body.name : book.name;
+    book.title = req.body.title ? req.body.title : book.title;
     book.save(function (err) {
         if (err) {
             res.json(err);
@@ -50,7 +50,7 @@ exports.updateBook = function (req, res) {
     Book.findById(req.params.book_id, function (err, book) {
         if (err)
             res.send(err);
-        book.name = req.body.name ? req.body.name : book.name;
+        book.title = req.body.title ? req.body.title : book.title;
         book.save(function (err) {
             if (err) {
                 res.json(err);
