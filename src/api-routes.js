@@ -6,18 +6,18 @@ router.get('/', function (req, res) {
     res.send('Welcome to RESTful API for CS3219 Task B!');
 });
 
-// Import contact controller
-let contactController = require('./controllers/contactController');
+// Import book controller
+let bookController = require('./controllers/bookController');
 
-// Contact routes
-router.route('/contacts')
-    .get(contactController.getContacts)
-    .post(contactController.createContact);
-router.route('/contacts/:contact_id')
-    .get(contactController.viewContact)
-    .patch(contactController.updateContact)
-    .put(contactController.updateContact)
-    .delete(contactController.deleteContact);
+// Book routes
+router.route('/books')
+    .get(bookController.getBooks)
+    .post(bookController.createBook);
+router.route('/books/:book_id')
+    .get(bookController.viewBook)
+    .patch(bookController.updateBook)
+    .put(bookController.updateBook)
+    .delete(bookController.deleteBook);
 
 // Export API routes
 module.exports = router;

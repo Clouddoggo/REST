@@ -1,20 +1,21 @@
 import React from 'react';
 import './App.css';
-import AddContact from './components/AddContact';
-import GetContacts from './components/GetContacts';
-import DeleteContact from './components/DeleteContact';
-import UpdateContact from './components/UpdateContact';
+import AddBook from './components/AddBook';
+import GetBooks from './components/GetBooks';
+import DeleteBook from './components/DeleteBook';
+import UpdateBook from './components/UpdateBook';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        CS3219 Task B
+        <h1>Welcome to CS3219 Task B's deployment site</h1>
+        <h3>Perform API calls below</h3>
       </header>
-      <AddContact />
-      <GetContacts />
-      <UpdateContact />
-      <DeleteContact />
+      <AddBook />
+      <GetBooks />
+      <UpdateBook />
+      <DeleteBook />
     </div>
   );
 }

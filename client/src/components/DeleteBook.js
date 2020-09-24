@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { Container, Button } from 'react-bootstrap';
 
-class DeleteContact extends Component {
+class DeleteBook extends Component {
     constructor(props) {
         super();
         this.state = {
-            contacts: []
+            books: []
         }
     }
 
-    deleteContact = (e, id) => {
-        const url = `/contacts/${id}`;
+    deleteBook = (e, id) => {
+        const url = `/books/${id}`;
         fetch(url, {
             method: "DELETE",
             headers: {
@@ -19,7 +19,7 @@ class DeleteContact extends Component {
         })
             .then(response => {
                 if (response.ok) {
-                    // getContacts();
+                    // getBooks();
                     return response.json();
                 }
                 throw new Error(`Network response error: ${response.id}, ${response.message}`);
@@ -29,13 +29,13 @@ class DeleteContact extends Component {
 
     render() {
         return (
-            <Container className="shadow p-4 m-5">
+            <Container className="shadow p-4 mt-5">
                 <ul>
                     {
-                        this.state.contacts.map((contact, _) => {
+                        this.state.books.map((book, _) => {
                             return <li>
-                                contact
-                            <Button className="btn btn-danger" onClick={(e) => this.deleteContact(e, contact.id)}>
+                                book
+                            <Button className="btn btn-danger" onClick={(e) => this.deleteBook(e, book.id)}>
                                     Delete
             </Button>
                             </li>
@@ -48,4 +48,4 @@ class DeleteContact extends Component {
     }
 }
 
-export default DeleteContact;
+export default DeleteBook;

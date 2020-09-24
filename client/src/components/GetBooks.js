@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import { Card, Form, Button } from 'react-bootstrap';
 
-class GetContact extends Component {
+class GetBook extends Component {
     constructor(props) {
         super();
         this.state = {
-            contacts: [],
+            books: [],
             id: '',
-            contact: null
+            book: null
         }
     }
 
-    getContactById = () => {
-        const url = `/contacts/${this.state.id}`;
+    getBookById = () => {
+        const url = `/books/${this.state.id}`;
         fetch(url, {
             method: "GET",
             headers: {
@@ -25,12 +25,12 @@ class GetContact extends Component {
                 }
                 throw new Error(`Network response error: ${response.id}, ${response.message}`);
             })
-            .then(response => this.setState({ contact: response }))
+            .then(response => this.setState({ book: response }))
             .catch(error => console.log(error.message));
     }
 
-    getContacts = () => {
-        const url = `/contacts`;
+    getBooks = () => {
+        const url = `/books`;
         fetch(url, {
             method: "GET",
             headers: {
@@ -43,27 +43,27 @@ class GetContact extends Component {
                 }
                 throw new Error(`Network response error: ${response.id}, ${response.message}`);
             })
-            .then(response => this.setState({ contacts: response }))
+            .then(response => this.setState({ books: response }))
             .catch(error => console.log(error.message));
     }
 
     render() {
         return (
-            <Card className="container shadow p-4 m-5">
+            <Card className="container shadow p-4 mt-5">
                 <Card.Body>
-                    <Card.Title>Get contact(s)</Card.Title>
+                    <Card.Title>Get book(s)</Card.Title>
                     <Form className="form-inline">
                         <label className="sr-only">Id</label>
                         <input type="text" className="form-control mb-2 mr-sm-2" placeholder="Id" />
-                        <Button className="btn btn-info" onClick={this.getContacts}>Get by Id</Button>
+                        <Button className="btn btn-info" onClick={this.getBooks}>Get by Id</Button>
                         <span className="mr-5 ml-5">OR</span>
-                        <Button className="btn btn-info float-left m-2" onClick={this.getContactById}>Get all</Button>
+                        <Button className="btn btn-info float-left m-2" onClick={this.getBookById}>Get all</Button>
                     </Form>
                     <ul>
                         {
-                            this.state.contacts.map((contact, _) => {
+                            this.state.books.map((book, _) => {
                                 return <li>
-                                    contact
+                                    book
                                 </li>
                             })
                         }
@@ -74,4 +74,4 @@ class GetContact extends Component {
     }
 }
 
-export default GetContact;
+export default GetBook;

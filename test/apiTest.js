@@ -1,15 +1,15 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const app = require('../index');
-const Contact = require('../src/model/contactModel');
+const Book = require('../src/model/bookModel');
 
 chai.use(chaiHttp);
 chai.should();
 
-describe("GET /contacts", () => {
-    it("should get all contacts", (done) => {
+describe("GET /", () => {
+    it("should get all ", (done) => {
         chai.request(app)
-            .get('/contacts')
+            .get('/books')
             .end((err, res) => {
                 res.should.have.status(200);
                 res.should.be.json;
@@ -20,19 +20,19 @@ describe("GET /contacts", () => {
     }).timeout(10000);
 });
 
-describe("POST /contacts", () => {
-    const newContact = new Contact({ name: 'Alice', phone: '01028475621221' });
+describe("POST /", () => {
+    const newBook = new Book({ title: 'Alice' });
     after((done) => {
-        // TODO: Fix the deletion of added contacts
-        newContact.delete((err) => {
+        // TODO: Fix the deletion of added 
+        newBook.delete((err) => {
             done();
         })
     });
 
-    it("should create a new contact", (done) => {
+    it("should create a new book", (done) => {
         chai.request(app)
-            .post('/contacts')
-            .send(newContact)
+            .post('/books')
+            .send(newBook)
             .end((err, res) => {
                 res.should.have.status(200);
                 res.should.be.json;
@@ -42,14 +42,14 @@ describe("POST /contacts", () => {
     }).timeout(10000);
 });
 
-describe("DEL /contacts/:contact_id", () => {
-    const newContact = new Contact({ name: 'Bob', phone: '91234567' });
-    let id = addDummyContact(newContact);
-    deleteDummyContact(newContact);
+describe("DEL /books/:book_id", () => {
+    const newBook = new Book({ title: 'Bob' });
+    let id = addDummyBook(newBook);
+    deleteDummyBook(newBook);
 
-    it("should delete a new contact", (done) => {
+    it("should delete a new book", (done) => {
         chai.request(app)
-            .delete(`/contacts/${id}`)
+            .delete(`/books/${id}`)
             .end((err, res) => {
                 res.should.have.status(200);
                 res.should.be.json;
@@ -59,14 +59,14 @@ describe("DEL /contacts/:contact_id", () => {
     }).timeout(10000);
 });
 
-describe("GET /contacts/:contact_id", () => {
-    const newContact = new Contact({ name: 'Charlie', phone: '87654321' });
-    let id = addDummyContact(newContact);
-    deleteDummyContact(newContact);
+describe("GET /books/:book_id", () => {
+    const newBook = new Book({ title: 'Charlie' });
+    let id = addDummyBook(newBook);
+    deleteDummyBook(newBook);
 
-    it("should get a contact", (done) => {
+    it("should get a book", (done) => {
         chai.request(app)
-            .get(`/contacts/${id}`)
+            .get(`/books/${id}`)
             .end((err, res) => {
                 res.should.have.status(200);
                 res.should.be.json;
@@ -77,28 +77,16 @@ describe("GET /contacts/:contact_id", () => {
     }).timeout(10000);
 });
 
-describe("UPDATE /contact/:contact_id with PATCH or PUT", () => {
-    describe("PATCH /contacts/:contact_id", () => {
-        const newContact = new Contact({ name: 'Derrick', phone: '455778796' });
-        let id = addDummyContact(newContact);
-        deleteDummyContact(newContact);
+describe("UPDATE /book/:book_id with PATCH or PUT", () => {
+    describe("PATCH /books/:book_id", () => {
+        const newBook = new Book({ title: 'Derrick' });
+        let id = addDummyBook(newBook);
+        deleteDummyBook(newBook);
 
-        it("should update the contact's name", (done) => {
+        it("should update the book's title", (done) => {
             chai.request(app)
-                .patch(`/contacts/${id}`)
-                .send({ name: 'Elinei' })
-                .end((err, res) => {
-                    res.should.have.status(200);
-                    res.should.be.json;
-                    res.body.should.be.a('object');
-                    done();
-                });
-        }).timeout(10000);
-
-        it("should update the contact's phone", (done) => {
-            chai.request(app)
-                .patch(`/contacts/${id}`)
-                .send({ phone: '52134567' })
+                .patch(`/books/${id}`)
+                .send({ title: 'Elinei' })
                 .end((err, res) => {
                     res.should.have.status(200);
                     res.should.be.json;
@@ -108,27 +96,15 @@ describe("UPDATE /contact/:contact_id with PATCH or PUT", () => {
         }).timeout(10000);
     });
 
-    describe("PUT /contacts/:contact_id", () => {
-        const newContact = new Contact({ name: 'Felix', phone: '435257667' });
-        let id = addDummyContact(newContact);
-        deleteDummyContact(newContact);
+    describe("PUT /books/:book_id", () => {
+        const newBook = new Book({ title: 'Felix ' });
+        let id = addDummyBook(newBook);
+        deleteDummyBook(newBook);
 
-        it("should update the contact's name", (done) => {
+        it("should update the book's title", (done) => {
             chai.request(app)
-                .put(`/contacts/${id}`)
-                .send({ name: 'Philipe' })
-                .end((err, res) => {
-                    res.should.have.status(200);
-                    res.should.be.json;
-                    res.body.should.be.a('object');
-                    done();
-                });
-        }).timeout(10000);
-
-        it("should update the contact's phone", (done) => {
-            chai.request(app)
-                .put(`/contacts/${id}`)
-                .send({ phone: '001340658356' })
+                .put(`/books/${id}`)
+                .send({ title: 'Philipe' })
                 .end((err, res) => {
                     res.should.have.status(200);
                     res.should.be.json;
@@ -139,19 +115,19 @@ describe("UPDATE /contact/:contact_id with PATCH or PUT", () => {
     });
 });
 
-function deleteDummyContact(newContact) {
+function deleteDummyBook(newBook) {
     after((done) => {
-        newContact.delete((err) => {
+        newBook.delete((err) => {
             done();
         });
     });
 }
 
-function addDummyContact(newContact) {
+function addDummyBook(newBook) {
     before((done) => {
-        newContact.save((err) => {
+        newBook.save((err) => {
             done();
         });
     });
-    return newContact._id;
+    return newBook._id;
 }

@@ -1,26 +1,24 @@
 import React, { Component } from 'react';
 import { Card, Form, Button } from 'react-bootstrap'
 
-class AddContact extends Component {
+class AddBook extends Component {
     constructor(props) {
         super();
         this.state = {
-            name: "",
-            phone: ""
+            title: ""
         };
     }
 
     onSubmit = (event) => {
         event.preventDefault();
-        const url = "/contacts";
-        const { name, phone } = this.state;
+        const url = "/books";
+        const { title } = this.state;
 
-        if (name.length === 0 || phone.length === 0)
+        if (title.length === 0)
             return;
 
         const body = {
-            name,
-            phone,
+            title,
         };
 
         fetch(url, {
@@ -41,20 +39,12 @@ class AddContact extends Component {
 
     render() {
         return (
-            <Card className="container shadow p-4 m-5">
+            <Card className="container shadow p-4 mt-5">
                 <Card.Body>
-                    <Card.Title>Create contact</Card.Title>
+                    <Card.Title>Add book</Card.Title>
                     <Form className="form-inline">
-                        <label className="sr-only">Name</label>
-                        <input type="text" className="form-control mb-2 mr-sm-2" placeholder="Name" />
-
-                        <label className="sr-only">number</label>
-                        <div className="input-group mb-2 mr-sm-2">
-                            <div className="input-group-prepend">
-                                <div className="input-group-text">#</div>
-                            </div>
-                            <input type="text" className="form-control" placeholder="Phone number" />
-                        </div>
+                        <label className="sr-only">Title</label>
+                        <input type="text" className="form-control mb-2 mr-sm-2" placeholder="Title" required />
                         <Button type="submit" className="btn btn-primary">Submit</Button>
                     </Form>
                 </Card.Body>
@@ -63,4 +53,4 @@ class AddContact extends Component {
     }
 }
 
-export default AddContact;
+export default AddBook;

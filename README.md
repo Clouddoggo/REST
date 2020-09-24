@@ -18,4 +18,4 @@
 
 3. Run `node index` or `nodemon index`
 4. Go to http://localhost:8080. You should see a welcome page.
-5. Go to http://localhost:8080/contacts to view the contacts in the list.
+5. Go to http://localhost:8080/ to view the  in the list.
