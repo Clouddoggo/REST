@@ -10,6 +10,7 @@ class DeleteBook extends Component {
     }
 
     deleteBook = (e, id) => {
+        e.preventDefault();
         fetch(`/books/${id}`, {
             method: "DELETE",
             headers: {
@@ -35,7 +36,7 @@ class DeleteBook extends Component {
                     <Form className="form-inline">
                         <label className="sr-only">Id</label>
                         <input type="text" className="form-control mb-2 mr-sm-2" placeholder="Id" required onChange={this.onChange} />
-                        <Button type="submit" className="btn btn-danger" onClick={this.deleteBook}>Delete by Id</Button>
+                        <Button type="submit" className="btn btn-danger" onSubmit={this.deleteBook}>Delete by Id</Button>
                     </Form>
                     <span>
                         {this.state.book ? <li>deleted book: {this.state.book.title}</li> : "No book deleted"}

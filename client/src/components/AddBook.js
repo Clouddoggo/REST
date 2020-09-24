@@ -50,6 +50,7 @@ class AddBook extends Component {
                         <input type="text" className="form-control mb-2 mr-sm-2" placeholder="Title" required onChange={this.onChange} />
                         <Button type="submit" className="btn btn-primary">Submit</Button>
                     </Form>
+                    <span>Added: {this.state.title}</span>
                 </Card.Body>
             </Card>
         );

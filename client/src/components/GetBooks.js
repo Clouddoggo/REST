@@ -9,21 +9,23 @@ class GetBooks extends Component {
         }
     }
 
-    getBooks = async () => {
-        try {
-            const result = await fetch(`/books`, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json"
+    getBooks = (event) => {
+        event.preventDefault();
+        fetch(`/books`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+            .then(response => {
+                if (response.ok) {
+                    const { message, data } = response.json();
+                    this.setState({ books: data });
+                    return message;
                 }
+                throw new Error(`Network response error: ${response.id}, ${response.message}`);
             })
-
-            const { message, data } = await result.json();
-            this.setState({ books: data })
-            console.log(`data: ${data}, message: ${message}`);
-        } catch (e) {
-            console.error(e.message);
-        }
+            .catch(error => console.log(error.message));
 
     }
 
@@ -33,7 +35,7 @@ class GetBooks extends Component {
                 <Card.Body>
                     <Card.Title>Get all books</Card.Title>
                     <Form>
-                        <Button className="btn btn-info float-left m-2" onClick={this.getBooks}>Get all</Button>
+                        <Button className="btn btn-info float-left m-2" onSubmit={this.getBooks}>Get all</Button>
                     </Form>
 
                     <ul>
