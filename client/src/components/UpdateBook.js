@@ -5,13 +5,21 @@ class UpdateBook extends Component {
     constructor(props) {
         super();
         this.state = {
-            title: ""
+            title: "",
+            id: ""
         };
+    }
+
+    onChange = (event, item) => {
+        if (item === "title") {
+            this.setState({ title: event.target.value });
+        } else {
+            this.setState({ id: event.target.value });
+        }
     }
 
     onSubmit = (event) => {
         event.preventDefault();
-        const url = "/books";
         const { title } = this.state;
 
         if (title.length === 0) {
@@ -22,8 +30,8 @@ class UpdateBook extends Component {
             title,
         };
 
-        fetch(url, {
-            method: "POST",
+        fetch(`/books/${this.state.id}`, {
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },
@@ -45,10 +53,10 @@ class UpdateBook extends Component {
                     <Card.Title>Update book</Card.Title>
                     <Form className="form-inline">
                         <div className="input-group mb-2 mr-sm-2">
-                            <input type="text" className="form-control" placeholder="Id" required />
+                            <input type="text" className="form-control" placeholder="Id" required onChange={(e) => this.onChange(e, "id")} />
                         </div>
                         <label className="sr-only">Title</label>
-                        <input type="text" className="form-control mb-2 mr-sm-2" placeholder="Title" required />
+                        <input type="text" className="form-control mb-2 mr-sm-2" placeholder="Title" required onChange={(e) => this.onChange(e, "title")} />
                         <Button type="submit" className="btn btn-primary">Submit</Button>
                     </Form>
                 </Card.Body>

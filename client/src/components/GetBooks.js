@@ -1,70 +1,46 @@
 import React, { Component } from 'react';
 import { Card, Form, Button } from 'react-bootstrap';
 
-class GetBook extends Component {
+class GetBooks extends Component {
     constructor(props) {
         super();
         this.state = {
-            books: [],
-            id: '',
-            book: null
+            books: []
         }
     }
 
-    getBookById = () => {
-        const url = `/books/${this.state.id}`;
-        fetch(url, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json"
-            }
-        })
-            .then(response => {
-                if (response.ok) {
-                    return response.json();
+    getBooks = async () => {
+        try {
+            const result = await fetch(`/books`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
                 }
-                throw new Error(`Network response error: ${response.id}, ${response.message}`);
             })
-            .then(response => this.setState({ book: response }))
-            .catch(error => console.log(error.message));
-    }
 
-    getBooks = () => {
-        const url = `/books`;
-        fetch(url, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json"
-            }
-        })
-            .then(response => {
-                if (response.ok) {
-                    return response.json();
-                }
-                throw new Error(`Network response error: ${response.id}, ${response.message}`);
-            })
-            .then(response => this.setState({ books: response }))
-            .catch(error => console.log(error.message));
+            const { message, data } = await result.json();
+            this.setState({ books: data })
+            console.log(`data: ${data}, message: ${message}`);
+        } catch (e) {
+            console.error(e.message);
+        }
+
     }
 
     render() {
         return (
             <Card className="container shadow p-4 mt-5">
                 <Card.Body>
-                    <Card.Title>Get book(s)</Card.Title>
-                    <Form className="form-inline">
-                        <label className="sr-only">Id</label>
-                        <input type="text" className="form-control mb-2 mr-sm-2" placeholder="Id" />
-                        <Button className="btn btn-info" onClick={this.getBooks}>Get by Id</Button>
-                        <span className="mr-5 ml-5">OR</span>
-                        <Button className="btn btn-info float-left m-2" onClick={this.getBookById}>Get all</Button>
+                    <Card.Title>Get all books</Card.Title>
+                    <Form>
+                        <Button className="btn btn-info float-left m-2" onClick={this.getBooks}>Get all</Button>
                     </Form>
+
                     <ul>
                         {
-                            this.state.books.map((book, _) => {
-                                return <li>
-                                    book
-                                </li>
+                            this.state.books.map((book) => {
+                                console.log('hi')
+                                return <li>Id: {book._id}, Title: {book.title}</li>
                             })
                         }
                     </ul>
@@ -74,4 +50,4 @@ class GetBook extends Component {
     }
 }
 
-export default GetBook;
+export default GetBooks;

@@ -15,11 +15,11 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use(bodyParser.json());
-
-// Use Api routes in the App
-app.use('/', apiRoutes);
-
+app.use(cors())
+// Use api routes in the App
+app.use('/books', apiRoutes);
 app.use(express.static(path.join(__dirname, 'client/build')));
+
 app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, 'client/build/index.html'));
 });
@@ -44,6 +44,5 @@ mongoose.connect("mongodb+srv://db_admin_b:KAzLfk9jSp6D2Qsd@cluster0.7uict.gcp.m
             });
         }
     });
-
 
 module.exports = app;

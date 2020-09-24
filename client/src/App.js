@@ -4,6 +4,7 @@ import AddBook from './components/AddBook';
 import GetBooks from './components/GetBooks';
 import DeleteBook from './components/DeleteBook';
 import UpdateBook from './components/UpdateBook';
+import GetBook from './components/GetBook';
 
 function App() {
   return (
@@ -12,8 +13,9 @@ function App() {
         <h1>Welcome to CS3219 Task B's deployment site</h1>
         <h3>Perform API calls below</h3>
       </header>
-      <AddBook />
       <GetBooks />
+      <AddBook />
+      <GetBook />
       <UpdateBook />
       <DeleteBook />
     </div>

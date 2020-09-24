@@ -9,9 +9,12 @@ class AddBook extends Component {
         };
     }
 
+    onChange = (event) => {
+        this.setState({ title: event.target.value });
+    }
+
     onSubmit = (event) => {
         event.preventDefault();
-        const url = "/books";
         const { title } = this.state;
 
         if (title.length === 0)
@@ -21,7 +24,7 @@ class AddBook extends Component {
             title,
         };
 
-        fetch(url, {
+        fetch("/books", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -44,7 +47,7 @@ class AddBook extends Component {
                     <Card.Title>Add book</Card.Title>
                     <Form className="form-inline">
                         <label className="sr-only">Title</label>
-                        <input type="text" className="form-control mb-2 mr-sm-2" placeholder="Title" required />
+                        <input type="text" className="form-control mb-2 mr-sm-2" placeholder="Title" required onChange={this.onChange} />
                         <Button type="submit" className="btn btn-primary">Submit</Button>
                     </Form>
                 </Card.Body>
