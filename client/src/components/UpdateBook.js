@@ -6,20 +6,21 @@ class UpdateBook extends Component {
     constructor(props) {
         super();
         this.state = {
-            book: null,
-            id: null
+            title: null,
+            id: null,
+            updated: false
         };
     }
 
     onChange = (event, item) => {
         if (item === "title") {
-            this.setState({ book: event.target.value });
+            this.setState({ title: event.target.value });
         } else {
             this.setState({ id: event.target.value });
         }
     }
 
-    onSubmit = (event) => {
+    updateBook = (event) => {
         event.preventDefault();
         const { title } = this.state;
 
@@ -44,7 +45,7 @@ class UpdateBook extends Component {
                 }
                 throw new Error(`Network response error: ${response.id}, ${response.message}`);
             })
-            .then(response => this.setState({ book: response.data }))
+            .then(response => this.setState({ title: response.data.title, updated: true }))
             .catch(error => console.log(error.message));
     }
 
@@ -59,11 +60,11 @@ class UpdateBook extends Component {
                         </div>
                         <label className="sr-only">Title</label>
                         <input type="text" className="form-control mb-2 mr-sm-2" placeholder="Title" required onChange={(e) => this.onChange(e, "title")} />
-                        <Button type="submit" className="btn btn-primary">Submit</Button>
+                        <Button type="button" className="btn btn-primary" onClick={this.updateBook}>Update</Button>
                     </Form>
-                    <span>{this.state.book
+                    <span>{this.state.updated
                         ? `Updated book - Id: ${this.state.id}, Title: ${this.state.title}`
-                        : this.state.id ? "Please enter valid id!" : "No books updated!"}</span>
+                        : "No books updated!"}</span>
                 </Card.Body>
             </Card>
         );
