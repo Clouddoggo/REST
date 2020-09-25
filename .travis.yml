@@ -16,7 +16,6 @@ deploy:
   provider: gae
   keyfile: otot-task-b-290214-11a462371441.json
   project: otot-task-b-290214
-  cleanup: true
 
 before_install:
   - openssl aes-256-cbc -K $encrypted_87a5c607730b_key -iv $encrypted_87a5c607730b_iv

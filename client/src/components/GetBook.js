@@ -14,7 +14,12 @@ class GetBook extends Component {
         this.setState({ id: event.target.value });
     }
 
-    getBookById = () => {
+    onSubmit = (event) => {
+        event.preventDefault();
+        console.log('trigger')
+        if (this.state.id.length === 0)
+            return;
+
         fetch(`/books/${this.state.id}`, {
             method: "GET",
             headers: {
@@ -23,13 +28,11 @@ class GetBook extends Component {
         })
             .then(response => {
                 if (response.ok) {
-                    const { message, data } = response.json();
-                    this.setState({ books: data });
-                    return message;
+                    return response.json();
                 }
                 throw new Error(`Network response error: ${response.id}, ${response.message}`);
             })
-            .then(response => this.setState({ book: response.js }))
+            .then(response => this.setState({ book: response.data }))
             .catch(error => console.log(error.message));
     }
 
@@ -41,7 +44,7 @@ class GetBook extends Component {
                     <Form className="form-inline">
                         <label className="sr-only">Id</label>
                         <input type="text" className="form-control mb-2 mr-sm-2" placeholder="Id" required onChange={this.onChange} />
-                        <Button type="submit" className="btn btn-info" onClick={this.getBookById}>Get by Id</Button>
+                        <Button type="submit" className="btn btn-info" onSubmit={this.onSubmit}>Get by Id</Button>
                     </Form>
                     <span>
                         {this.state.book

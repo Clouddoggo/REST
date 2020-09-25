@@ -5,7 +5,8 @@ class AddBook extends Component {
     constructor(props) {
         super();
         this.state = {
-            title: ""
+            title: "",
+            added: false
         };
     }
 
@@ -15,10 +16,13 @@ class AddBook extends Component {
 
     onSubmit = (event) => {
         event.preventDefault();
+
+        console.log('trigger')
         const { title } = this.state;
 
-        if (title.length === 0)
-            return;
+        if (title.length === 0) {
+            alert('title cannot be empty!')
+        }
 
         const body = {
             title,
@@ -33,6 +37,8 @@ class AddBook extends Component {
         })
             .then(response => {
                 if (response.ok) {
+                    console.log('hello')
+                    this.setState({ added: true });
                     return response.json();
                 }
                 throw new Error(`Network response error: ${response.id}, ${response.message}`);
@@ -48,11 +54,11 @@ class AddBook extends Component {
                     <Form className="form-inline">
                         <label className="sr-only">Title</label>
                         <input type="text" className="form-control mb-2 mr-sm-2" placeholder="Title" required onChange={this.onChange} />
-                        <Button type="submit" className="btn btn-primary">Submit</Button>
+                        <Button type="submit" className="btn btn-primary" onSubmit={(e) => { e.preventDefault(); this.onSubmit(e) }}>Submit</Button>
                     </Form>
-                    <span>Added: {this.state.title}</span>
+                    <span>{this.state.added ? `Added: ${this.state.title}` : "No books added!"}</span>
                 </Card.Body>
-            </Card>
+            </Card >
         );
     }
 }
