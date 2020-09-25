@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Clouddoggo/OTOT-Task-B.svg?branch=master)](https://travis-ci.org/Clouddoggo/OTOT-Task-B)
+
 # Instructions to run
 
 ## This project requires the following:

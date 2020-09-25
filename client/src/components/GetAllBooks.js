@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Card, Button } from 'react-bootstrap';
 
-class GetBooks extends Component {
+class GetAllBooks extends Component {
     constructor(props) {
         super();
         this.state = {
@@ -34,17 +34,19 @@ class GetBooks extends Component {
                 <Card.Body>
                     <Card.Title>Get all books</Card.Title>
                     <Button className="btn btn-info float-left m-2" onClick={(e) => this.getBooks(e)}>Get all</Button>
-                    <ul>
-                        {
-                            this.state.books.map((book) => {
-                                return <li key={book._id}>Book Id: {book._id}, Title: {book.title}</li>
-                            })
-                        }
-                    </ul>
+                    <div className="d-flex">
+                        <ul className="mt-5">
+                            {
+                                this.state.books.map((book) => {
+                                    return <li key={book._id} className="m-2">Book Id: {book._id}, Title: {book.title}</li>
+                                })
+                            }
+                        </ul>
+                    </div>
                 </Card.Body>
             </Card>
         );
     }
 }
 
-export default GetBooks;
+export default GetAllBooks;

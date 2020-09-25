@@ -5,7 +5,7 @@ class GetBook extends Component {
     constructor(props) {
         super();
         this.state = {
-            id: '',
+            id: null,
             book: null
         }
     }
@@ -14,9 +14,8 @@ class GetBook extends Component {
         this.setState({ id: event.target.value });
     }
 
-    onSubmit = (event) => {
+    getBookById = (event) => {
         event.preventDefault();
-        console.log('trigger')
         if (this.state.id.length === 0)
             return;
 
@@ -44,7 +43,7 @@ class GetBook extends Component {
                     <Form className="form-inline">
                         <label className="sr-only">Id</label>
                         <input type="text" className="form-control mb-2 mr-sm-2" placeholder="Id" required onChange={this.onChange} />
-                        <Button type="submit" className="btn btn-info" onSubmit={this.onSubmit}>Get by Id</Button>
+                        <Button type="button" className="btn btn-info" onClick={this.getBookById}>Get by Id</Button>
                     </Form>
                     <span>
                         {this.state.book

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Card, Form, Button } from 'react-bootstrap'
 
 class AddBook extends Component {
+    // TODO: fix required field. Problem: if use submit, page will refresh due to boostrap. But if dont use, required doesn't work
     constructor(props) {
         super();
         this.state = {
@@ -14,7 +15,7 @@ class AddBook extends Component {
         this.setState({ title: event.target.value });
     }
 
-    onSubmit = (event) => {
+    addBook = (event) => {
         event.preventDefault();
 
         console.log('trigger')
@@ -54,7 +55,7 @@ class AddBook extends Component {
                     <Form className="form-inline">
                         <label className="sr-only">Title</label>
                         <input type="text" className="form-control mb-2 mr-sm-2" placeholder="Title" required onChange={this.onChange} />
-                        <Button type="submit" className="btn btn-primary" onSubmit={(e) => { e.preventDefault(); this.onSubmit(e) }}>Submit</Button>
+                        <Button type="button" className="btn btn-primary" onClick={this.addBook}>Submit</Button>
                     </Form>
                     <span>{this.state.added ? `Added: ${this.state.title}` : "No books added!"}</span>
                 </Card.Body>
