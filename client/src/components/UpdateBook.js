@@ -22,9 +22,10 @@ class UpdateBook extends Component {
 
     updateBook = (event) => {
         event.preventDefault();
-        const { title } = this.state;
+        const { title, id } = this.state;
 
-        if (title.length === 0) {
+        if (!title || !id || title.trim().length === 0 || id.trim().length === 0) {
+            alert('Please enter the id and new title of the book to be updated!');
             return;
         }
 
@@ -62,9 +63,9 @@ class UpdateBook extends Component {
                         <input type="text" className="form-control mb-2 mr-sm-2" placeholder="Title" required onChange={(e) => this.onChange(e, "title")} />
                         <Button type="button" className="btn btn-primary" onClick={this.updateBook}>Update</Button>
                     </Form>
-                    <span>{this.state.updated
-                        ? `Updated book - Id: ${this.state.id}, Title: ${this.state.title}`
-                        : "No books updated!"}</span>
+                    <p>{this.state.updated
+                        ? `Updated title of book ${this.state.id} to '${this.state.title}'. Get All again to view the new list.`
+                        : "No books updated!"}</p>
                 </Card.Body>
             </Card>
         );

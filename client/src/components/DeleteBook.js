@@ -1,30 +1,13 @@
 import React, { Component } from 'react';
-import { Card, Button } from 'react-bootstrap';
+import { Card, Button, Form } from 'react-bootstrap';
 
 class DeleteBook extends Component {
-    // TODO: server crashes after delete. fix
     constructor(props) {
         super();
         this.state = {
-            books: []
+            id: null,
+            deleted: false
         }
-    }
-
-    componentDidMount = () => {
-        fetch(`/books`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json"
-            }
-        })
-            .then(response => {
-                if (response.ok) {
-                    return response.json();
-                }
-                throw new Error(`Network response error: ${response.id}, ${response.message}`);
-            })
-            .then(response => this.setState({ books: response.data }))
-            .catch(error => console.log(error.message));
     }
 
     onChange = (event) => {
@@ -33,6 +16,14 @@ class DeleteBook extends Component {
 
     deleteBook = (event) => {
         event.preventDefault();
+
+        const { id } = this.state;
+
+        if (!id || id.trim().length === 0) {
+            alert('Please enter id of book to be deleted')
+            return;
+        }
+
         fetch(`/books/${this.state.id}`, {
             method: "DELETE",
             headers: {
@@ -45,6 +36,7 @@ class DeleteBook extends Component {
                 }
                 throw new Error(`Network response error: ${response.id}, ${response.message}`);
             })
+            .then(response => this.setState({ deleted: true }))
             .catch(error => console.log(error.message));
     }
 
@@ -53,26 +45,13 @@ class DeleteBook extends Component {
             <Card className="d-flex container shadow p-4 mt-5">
                 <Card.Body>
                     <Card.Title>Delete a book</Card.Title>
-                    <div>
-                        <ul>
-                            {
-                                this.state.books.map((book) => {
-                                    return (
-                                        <li key={book._id}>
-                                            <Card className="mt-2 mb-2">
-                                                <Card.Body>
-                                                    Id: {book._id},
-                                                            Title: {book.title}
-
-                                                    <Button type="button" className="btn btn-danger float-right" onClick={this.deleteBook}>Delete</Button>
-                                                </Card.Body>
-                                            </Card>
-                                        </li>
-                                    );
-                                })
-                            }
-                        </ul>
-                    </div>
+                    <Form className="form-inline">
+                        <Form.Label className="sr-only">Id</Form.Label>
+                        <Form.Control type="text" className="mb-2 mr-sm-2" placeholder="Id" onChange={this.onChange}
+                        />
+                        <Button type="button" className="btn btn-primary" onClick={this.deleteBook}>Submit</Button>
+                    </Form>
+                    <span>{this.state.deleted ? `Deleted book with Id: ${this.state.id}. Get All again to see the new book list!` : "No books deleted yet!"}</span>
                 </Card.Body>
             </Card>
         );

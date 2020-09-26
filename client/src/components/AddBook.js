@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Card, Form, Button } from 'react-bootstrap'
 
 class AddBook extends Component {
-    // TODO: fix required field. Problem: if use submit, page will refresh due to boostrap. But if dont use, required doesn't work
     constructor(props) {
         super();
         this.state = {
@@ -15,15 +14,14 @@ class AddBook extends Component {
         this.setState({ title: event.target.value });
     }
 
-    addBook = (event) => {
+    handleSubmit = (event) => {
         event.preventDefault();
 
-        console.log('trigger')
         const { title } = this.state;
 
-        if (title.length === 0) {
-            alert('title cannot be empty!')
-        }
+        if (title.trim().length === 0)
+            return;
+
 
         const body = {
             title,
@@ -38,7 +36,6 @@ class AddBook extends Component {
         })
             .then(response => {
                 if (response.ok) {
-                    console.log('hello')
                     this.setState({ added: true });
                     return response.json();
                 }
@@ -53,13 +50,14 @@ class AddBook extends Component {
                 <Card.Body>
                     <Card.Title>Add book</Card.Title>
                     <Form className="form-inline">
-                        <label className="sr-only">Title</label>
-                        <input type="text" className="form-control mb-2 mr-sm-2" placeholder="Title" required onChange={this.onChange} />
-                        <Button type="button" className="btn btn-primary" onClick={this.addBook}>Submit</Button>
+                        <Form.Label className="sr-only">Title</Form.Label>
+                        <Form.Control type="text" className="mb-2 mr-sm-2" placeholder="Title" onChange={this.onChange}
+                        />
+                        <Button type="button" className="btn btn-primary" onClick={this.handleSubmit}>Submit</Button>
                     </Form>
-                    <span>{this.state.added ? `Added: ${this.state.title}` : "No books added!"}</span>
+                    <span>{this.state.added ? `Added: ${this.state.title}. Get All again to see the added book!` : "No books added!"}</span>
                 </Card.Body>
-            </Card >
+            </Card>
         );
     }
 }
