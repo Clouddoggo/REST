@@ -48,7 +48,6 @@ class DeleteBook extends Component {
                     <Form className="form-inline">
                         <Form.Label className="sr-only">Id</Form.Label>
                         <Form.Control type="text" className="mb-2 mr-sm-2" placeholder="Id" onChange={this.onChange} />
-                        <input type="reset" defaultValue="Reset" />
                         <Button type="button" className="btn btn-danger" onClick={this.deleteBook}>Delete</Button>
                     </Form>
                     <span>{this.state.deleted ? `Deleted book with Id: ${this.state.id}. Get All again to see the new book list!` : "No books deleted yet!"}</span>
