@@ -21,6 +21,6 @@
 ``` bash
    cd OTOT-Task-B
 ```
-
-3. Run `node index` or `nodemon index`
-4. Go to http://localhost:8080. You should see a welcome page.
+3. Run `npm install` and wait for the installation to complete
+4. Run `node index` or `nodemon index`
+5. Go to http://localhost:8080. You should see a welcome page.
