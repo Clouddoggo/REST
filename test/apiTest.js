@@ -21,8 +21,7 @@ describe("GET /books", () => {
 });
 
 describe("POST /books", () => {
-    const newBook = new Book({ title: 'Alice' });
-    deleteDummyBook(newBook);
+    const newBook = new Book({ title: 'Chained letters' });
 
     it("should create a new book", (done) => {
         chai.request(app)
@@ -30,15 +29,15 @@ describe("POST /books", () => {
             .send(newBook)
             .end((err, res) => {
                 res.should.have.status(200);
-                // res.should.be.json;
-                // res.body.should.be.a('object');
+                res.should.be.json;
+                res.body.should.be.a('object');
                 done();
             });
     }).timeout(10000);
 });
 
 describe("DEL /books/:book_id", () => {
-    const newBook = new Book({ title: 'Bob' });
+    const newBook = new Book({ title: 'HEHEHAHA' });
     let id = addDummyBook(newBook);
     deleteDummyBook(newBook);
 
@@ -55,7 +54,7 @@ describe("DEL /books/:book_id", () => {
 });
 
 describe("GET /books/:book_id", () => {
-    const newBook = new Book({ title: 'Charlie' });
+    const newBook = new Book({ title: 'Five people you meet in heaven' });
     let id = addDummyBook(newBook);
     deleteDummyBook(newBook);
 
@@ -74,7 +73,7 @@ describe("GET /books/:book_id", () => {
 
 describe("UPDATE /book/:book_id with PATCH or PUT", () => {
     describe("PATCH /books/:book_id", () => {
-        const newBook = new Book({ title: 'Derrick' });
+        const newBook = new Book({ title: 'YOLOLEHEEHOO' });
         let id = addDummyBook(newBook);
         deleteDummyBook(newBook);
 
@@ -92,7 +91,7 @@ describe("UPDATE /book/:book_id with PATCH or PUT", () => {
     });
 
     describe("PUT /books/:book_id", () => {
-        const newBook = new Book({ title: 'Felix ' });
+        const newBook = new Book({ title: 'Thirst' });
         let id = addDummyBook(newBook);
         deleteDummyBook(newBook);
 
