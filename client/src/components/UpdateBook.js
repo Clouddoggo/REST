@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Card, Form, Button } from 'react-bootstrap'
 
 class UpdateBook extends Component {
-    // TODO: fix required field. Problem: if use submit, page will refresh due to boostrap. But if dont use, required doesn't work
     constructor(props) {
         super();
         this.state = {
