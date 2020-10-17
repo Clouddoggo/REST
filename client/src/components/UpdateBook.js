@@ -24,7 +24,7 @@ class UpdateBook extends Component {
         const { title, id } = this.state;
 
         if (!title || !id || title.trim().length === 0 || id.trim().length === 0) {
-            alert('Please enter the id and new title of the book to be updated!');
+            alert('id and new title of the book to be updated cannot be empty!');
             return;
         }
 

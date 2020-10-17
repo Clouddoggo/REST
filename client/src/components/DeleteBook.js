@@ -20,7 +20,7 @@ class DeleteBook extends Component {
         const { id } = this.state;
 
         if (!id || id.trim().length === 0) {
-            alert('Please enter id of book to be deleted')
+            alert('id of book to be deleted cannot be empty!')
             return;
         }
 
@@ -36,7 +36,7 @@ class DeleteBook extends Component {
                 }
                 throw new Error(`Network response error: ${response.id}, ${response.message}`);
             })
-            .then(response => this.setState({ deleted: true }))
+            .then(_ => this.setState({ deleted: true }))
             .catch(error => console.log(error.message));
     }
 

@@ -16,8 +16,10 @@ class GetBook extends Component {
 
     getBookById = (event) => {
         event.preventDefault();
-        if (this.state.id.length === 0)
+        if (!this.state.id || this.state.id.trim().length === 0) {
+            alert("id cannot empty!")
             return;
+        }
 
         fetch(`/books/${this.state.id}`, {
             method: "GET",

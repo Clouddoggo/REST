@@ -19,9 +19,10 @@ class AddBook extends Component {
 
         const { title } = this.state;
 
-        if (title.trim().length === 0)
+        if (title.trim().length === 0) {
+            alert("title cannot be empty!")
             return;
-
+        }
 
         const body = {
             title,

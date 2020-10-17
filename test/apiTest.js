@@ -34,6 +34,18 @@ describe("POST /books", () => {
                 done();
             });
     }).timeout(10000);
+
+    it("should not create a new book", (done) => {
+        chai.request(app)
+            .post('/books')
+            .send(new Book())
+            .end((err, res) => {
+                res.should.not.have.status(200);
+                res.should.be.json;
+                res.body.should.be.a('object');
+                done();
+            });
+    }).timeout(10000);
 });
 
 describe("DEL /books/:book_id", () => {
@@ -46,6 +58,17 @@ describe("DEL /books/:book_id", () => {
             .delete(`/books/${id}`)
             .end((err, res) => {
                 res.should.have.status(200);
+                res.should.be.json;
+                res.body.should.be.a('object');
+                done();
+            });
+    }).timeout(10000);
+
+    it("should not delete a new book", (done) => {
+        chai.request(app)
+            .delete(`/books/ab`)
+            .end((err, res) => {
+                res.should.not.have.status(200);
                 res.should.be.json;
                 res.body.should.be.a('object');
                 done();
@@ -69,6 +92,17 @@ describe("GET /books/:book_id", () => {
                 done();
             });
     }).timeout(10000);
+
+    it("should not get a book", (done) => {
+        chai.request(app)
+            .get(`/books/ab`)
+            .end((err, res) => {
+                res.should.not.have.status(200);
+                res.should.be.json;
+                res.body.should.be.a('object');
+                done();
+            });
+    }).timeout(10000);
 });
 
 describe("UPDATE /book/:book_id with PATCH or PUT", () => {
@@ -80,9 +114,21 @@ describe("UPDATE /book/:book_id with PATCH or PUT", () => {
         it("should update the book's title", (done) => {
             chai.request(app)
                 .patch(`/books/${id}`)
-                .send({ title: 'Elinei' })
+                .send({ title: 'Chantress' })
                 .end((err, res) => {
                     res.should.have.status(200);
+                    res.should.be.json;
+                    res.body.should.be.a('object');
+                    done();
+                });
+        }).timeout(10000);
+
+        it("should not update the book's title", (done) => {
+            chai.request(app)
+                .patch(`/books/${id}`)
+                .send({ title: '' })
+                .end((err, res) => {
+                    res.should.not.have.status(200);
                     res.should.be.json;
                     res.body.should.be.a('object');
                     done();
@@ -98,9 +144,21 @@ describe("UPDATE /book/:book_id with PATCH or PUT", () => {
         it("should update the book's title", (done) => {
             chai.request(app)
                 .put(`/books/${id}`)
-                .send({ title: 'Philipe' })
+                .send({ title: 'ThisShouldAppear' })
                 .end((err, res) => {
                     res.should.have.status(200);
+                    res.should.be.json;
+                    res.body.should.be.a('object');
+                    done();
+                });
+        }).timeout(10000);
+
+        it("should not update the book's title", (done) => {
+            chai.request(app)
+                .put(`/books/ab`)
+                .send({ title: 'ThisShouldFail' })
+                .end((err, res) => {
+                    res.should.not.have.status(200);
                     res.should.be.json;
                     res.body.should.be.a('object');
                     done();
